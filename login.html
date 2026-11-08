@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập — Video Admin Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/auth.css">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <div class="auth-logo">▶</div>
+                <h1 class="auth-title">Đăng nhập Quản trị</h1>
+                <p class="auth-subtitle">Hệ thống quản lý Video chuyên nghiệp</p>
+                <span class="auth-db-tag">🗄️ SQLite: users.db</span>
+            </div>
+
+            <div id="auth-alert" class="auth-alert"></div>
+
+            <form id="login-form">
+                <div class="form-group">
+                    <label class="form-label" for="login-email">Địa chỉ Email</label>
+                    <input
+                        type="email"
+                        id="login-email"
+                        class="form-control"
+                        placeholder="admin@gmail.com"
+                        value="admin@gmail.com"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="login-password">Mật khẩu</label>
+                    <div class="password-input-wrapper">
+                        <input
+                            type="password"
+                            id="login-password"
+                            class="form-control"
+                            placeholder="Nhập mật khẩu..."
+                            value="123456"
+                            required
+                        >
+                        <button type="button" class="password-toggle-btn" data-toggle-password="login-password">Hiện</button>
+                    </div>
+                </div>
+
+                <div class="auth-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" checked>
+                        <span>Ghi nhớ đăng nhập</span>
+                    </label>
+                    <a href="forgot-password.html">Quên mật khẩu?</a>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">
+                    Đăng nhập vào Dashboard
+                </button>
+            </form>
+
+            <div class="demo-credentials">
+                <div class="demo-credentials-header">
+                    <span>💡 Tài khoản mẫu trong users.db</span>
+                </div>
+                <div class="demo-credential-item">
+                    <span>Role ADMIN: <strong>admin@gmail.com</strong> / 123456</span>
+                    <button type="button" class="demo-fill-btn" data-fill-demo data-email="admin@gmail.com" data-pass="123456">Điền nhanh</button>
+                </div>
+                <div class="demo-credential-item">
+                    <span>Role USER: <strong>user1@demo.com</strong> / 123456</span>
+                    <button type="button" class="demo-fill-btn" data-fill-demo data-email="user1@demo.com" data-pass="123456">Điền nhanh</button>
+                </div>
+            </div>
+
+            <div class="auth-footer">
+                Chưa có tài khoản quản trị? <a href="register.html"><strong>Đăng ký ngay</strong></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- SQL.js WebAssembly & Supabase JS SDK v2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="assets/js/utils/formatters.js"></script>
+    <script src="assets/js/utils/auth-guard.js"></script>
+    <script src="assets/js/db/supabase-client.js"></script>
+    <script src="assets/js/db/sqlite-manager.js"></script>
+    <script src="assets/js/db/users-repo.js"></script>
+    <script src="assets/js/pages/auth.js"></script>
+</body>
+</html>

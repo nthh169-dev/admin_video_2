@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phân Quyền (Permission Management) — Video Admin Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/videos.css">
+    <link rel="stylesheet" href="assets/css/permissions.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-logo">▶</div>
+                <div class="brand-text">
+                    <span class="brand-title">VideoAdmin</span>
+                    <span class="brand-subtitle">Vibe Coding • SQLite</span>
+                </div>
+            </div>
+
+            <div class="sidebar-content">
+                <div>
+                    <div class="nav-section-title">Menu Quản Trị</div>
+                    <ul class="nav-list">
+                        <li>
+                            <a href="index.html" class="nav-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="videos.html" class="nav-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                                <span>List Video</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="permissions.html" class="nav-link active">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                <span>Phân Quyền</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="nav-section-title">Trang Xác Thực</div>
+                    <ul class="nav-list">
+                        <li>
+                            <a href="login.html" class="nav-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+                                <span>Trang Login</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="register.html" class="nav-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+                                <span>Trang Register</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="forgot-password.html" class="nav-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                <span>Forgot Password</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 4 SQLite Databases Panel -->
+                <div class="db-panel">
+                    <div class="db-panel-header">
+                        <span class="db-panel-title">🗄️ SQLite Databases</span>
+                        <span class="db-badge-engine">No-Backend</span>
+                    </div>
+                    <ul class="db-list">
+                        <li class="db-item">
+                            <span class="db-item-name"><span class="status-dot"></span>users.db</span>
+                            <button type="button" class="db-download-btn" data-export-db="users.db">⬇ Tải</button>
+                        </li>
+                        <li class="db-item">
+                            <span class="db-item-name"><span class="status-dot"></span>videos.db</span>
+                            <button type="button" class="db-download-btn" data-export-db="videos.db">⬇ Tải</button>
+                        </li>
+                        <li class="db-item">
+                            <span class="db-item-name"><span class="status-dot"></span>video_categories.db</span>
+                            <button type="button" class="db-download-btn" data-export-db="video_categories.db">⬇ Tải</button>
+                        </li>
+                        <li class="db-item">
+                            <span class="db-item-name"><span class="status-dot"></span>video_analytics.db</span>
+                            <button type="button" class="db-download-btn" data-export-db="video_analytics.db">⬇ Tải</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <button type="button" id="btn-reset-db" class="btn btn-secondary btn-sm btn-block">
+                    🔄 Khôi phục DB mẫu
+                </button>
+                <button type="button" data-action="logout" class="btn btn-danger btn-sm btn-block">
+                    Đăng xuất
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Wrapper -->
+        <div class="main-wrapper">
+            <header class="top-header">
+                <div class="header-left">
+                    <h1 class="page-title">Phân Quyền (Permission Management)</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-pill">
+                        <div class="user-avatar" id="header-user-avatar">AD</div>
+                        <div class="user-info">
+                            <span class="user-name" id="header-user-name">Quản Trị Viên</span>
+                            <span class="user-role" id="header-user-role">ADMIN • admin@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="page-content">
+                <!-- Giao diện khi bị từ chối quyền truy cập (Tài khoản đang đăng nhập có role USER) -->
+                <div id="permission-denied-content" style="display: none;">
+                    <div class="access-denied-card">
+                        <div class="access-denied-icon">🔒</div>
+                        <h2>Không có quyền truy cập trang Phân Quyền</h2>
+                        <p>
+                            Tài khoản hiện tại <strong id="denied-user-email"></strong> không có quyền truy cập.<br>
+                            Chỉ tài khoản có quyền <strong>ADMIN</strong> mới được phép xem và chỉnh sửa quyền (role) của các tài khoản khác.
+                        </p>
+                        <div class="access-denied-actions">
+                            <a href="index.html" class="btn btn-secondary">← Về Dashboard</a>
+                            <button type="button" id="btn-switch-to-admin" class="btn btn-primary">
+                                ⚡ Chuyển nhanh sang tài khoản ADMIN (admin@gmail.com)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Giao diện Quản lý Phân Quyền dành cho ADMIN -->
+                <div id="permission-admin-content">
+                    <!-- 3 Thẻ thống kê Role -->
+                    <section class="perm-kpi-grid">
+                        <div class="perm-stat-card">
+                            <div class="perm-stat-info">
+                                <span class="perm-stat-label">Tổng số tài khoản</span>
+                                <span class="perm-stat-value" id="perm-total-users">11</span>
+                                <span class="perm-stat-sub">Lưu trữ trong <code>users.db</code></span>
+                            </div>
+                            <div class="perm-stat-icon blue">👥</div>
+                        </div>
+
+                        <div class="perm-stat-card">
+                            <div class="perm-stat-info">
+                                <span class="perm-stat-label">Quyền Quản trị (ADMIN)</span>
+                                <span class="perm-stat-value" id="perm-admin-count">1</span>
+                                <span class="perm-stat-sub">Toàn quyền quản lý & phân quyền</span>
+                            </div>
+                            <div class="perm-stat-icon purple">🛡️</div>
+                        </div>
+
+                        <div class="perm-stat-card">
+                            <div class="perm-stat-info">
+                                <span class="perm-stat-label">Quyền Người dùng (USER)</span>
+                                <span class="perm-stat-value" id="perm-user-count">10</span>
+                                <span class="perm-stat-sub">Bao gồm 10 tài khoản user1..10@demo.com</span>
+                            </div>
+                            <div class="perm-stat-icon green">👤</div>
+                        </div>
+                    </section>
+
+                    <!-- Thanh tìm kiếm và lọc theo Role -->
+                    <div class="perm-toolbar">
+                        <div class="perm-filters">
+                            <div class="perm-search-box">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                                <input
+                                    type="text"
+                                    id="perm-search"
+                                    class="form-control"
+                                    placeholder="Tìm tài khoản theo email (VD: user1@demo.com) hoặc họ tên..."
+                                >
+                            </div>
+
+                            <select id="perm-role-filter" class="form-control perm-role-filter">
+                                <option value="ALL">Tất cả quyền (ADMIN & USER)</option>
+                                <option value="ADMIN">Chỉ quyền ADMIN</option>
+                                <option value="USER">Chỉ quyền USER</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <span style="font-size: 12.5px; color: var(--text-muted);">
+                                💡 Chọn Role mới và bấm <strong>Lưu quyền</strong> để cập nhật vào <code>users.db</code>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Bảng danh sách tài khoản và phân quyền -->
+                    <div class="perm-table-card">
+                        <div class="table-responsive">
+                            <table class="perm-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Tài khoản (Họ tên & Email)</th>
+                                        <th>Role hiện tại</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Chỉnh sửa Role (ADMIN / USER)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="permissions-table-body">
+                                    <!-- Render từ users.db -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="table-footer">
+                            <span id="perm-table-summary">Đang tải danh sách tài khoản...</span>
+                            <span>Database: <code>users.db</code> (Bảng <code>users</code>)</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- SQL.js WebAssembly -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
+    <script src="assets/js/utils/formatters.js"></script>
+    <script src="assets/js/utils/auth-guard.js"></script>
+    <script src="assets/js/db/supabase-client.js"></script>
+    <script src="assets/js/db/sqlite-manager.js"></script>
+    <script src="assets/js/db/users-repo.js"></script>
+    <script src="assets/js/pages/permissions.js"></script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Video — Quản lý Danh sách Video</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/videos.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-logo">▶</div>
+                <div class="brand-text">
+                    <span class="brand-title">VideoAdmin</span>
+                    <span class="brand-subtitle">Vibe Coding • SQLite</span>
+                </div>
+            </div>
+
+            <div class="sidebar-content">
+                <div>
+                    <div class="nav-section-title">Menu Quản Trị</div>
+                    <ul class="nav-list">
+                        <li>
+                            <a href="index.html" class="nav-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="videos.html" class="nav-link active">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                                <span>List Video</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="permissions.html" class="nav-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                <span>Phân Quyền</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="nav-section-title">Trang Xác Thực</div>
+                    <ul class="nav-list">
+                        <li>
+                            <a href="login.html" class="nav-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+                                <span>Trang Login</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="register.html" class="nav-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+                                <span>Trang Register</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="forgot-password.html" class="nav-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                <span>Forgot Password</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 4 SQLite Databases Panel -->
+                <div class="db-panel">
+                    <div class="db-panel-header">
+                        <span class="db-panel-title">🗄️ SQLite Databases</span>
+                        <span class="db-badge-engine">No-Backend</span>
+                    </div>
+                    <ul class="db-list">
+                        <li class="db-item">
+                            <span class="db-item-name"><span class="status-dot"></span>users.db</span>
+                            <button type="button" class="db-download-btn" data-export-db="users.db">⬇ Tải</button>
+                        </li>
+                        <li class="db-item">
+                            <span class="db-item-name"><span class="status-dot"></span>videos.db</span>
+                            <button type="button" class="db-download-btn" data-export-db="videos.db">⬇ Tải</button>
+                        </li>
+                        <li class="db-item">
+                            <span class="db-item-name"><span class="status-dot"></span>video_categories.db</span>
+                            <button type="button" class="db-download-btn" data-export-db="video_categories.db">⬇ Tải</button>
+                        </li>
+                        <li class="db-item">
+                            <span class="db-item-name"><span class="status-dot"></span>video_analytics.db</span>
+                            <button type="button" class="db-download-btn" data-export-db="video_analytics.db">⬇ Tải</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <button type="button" id="btn-reset-db" class="btn btn-secondary btn-sm btn-block">
+                    🔄 Khôi phục DB mẫu
+                </button>
+                <button type="button" data-action="logout" class="btn btn-danger btn-sm btn-block">
+                    Đăng xuất
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Wrapper -->
+        <div class="main-wrapper">
+            <header class="top-header">
+                <div class="header-left">
+                    <h1 class="page-title">List Video (Quản lý Video)</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-pill">
+                        <div class="user-avatar" id="header-user-avatar">AD</div>
+                        <div class="user-info">
+                            <span class="user-name" id="header-user-name">Quản Trị Viên</span>
+                            <span class="user-role" id="header-user-role">admin@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="page-content">
+                <!-- Thanh công cụ tìm kiếm, lọc danh mục và thêm mới -->
+                <div class="videos-toolbar">
+                    <div class="toolbar-filters">
+                        <div class="search-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                            <input
+                                type="text"
+                                id="search-video"
+                                class="form-control"
+                                placeholder="Tìm kiếm theo ID hoặc tiêu đề video..."
+                            >
+                        </div>
+
+                        <select id="filter-category" class="form-control filter-select">
+                            <option value="all">Tất cả danh mục</option>
+                        </select>
+                    </div>
+
+                    <div class="toolbar-actions">
+                        <button type="button" id="btn-open-add-category" class="btn btn-secondary">
+                            🏷️ + Thêm Danh mục
+                        </button>
+                        <button type="button" id="btn-open-add-video" class="btn btn-primary">
+                            + Thêm Video mới
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bảng Danh sách Video: id, thumbnail, title, views, action (Edit, Delete) -->
+                <div class="table-card">
+                    <div class="table-responsive">
+                        <table class="video-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Thumbnail</th>
+                                    <th>Title</th>
+                                    <th>Views</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="videos-table-body">
+                                <!-- Dữ liệu render từ videos.db -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-footer">
+                        <span id="table-summary-text">Đang tải dữ liệu từ videos.db...</span>
+                        <span>Database: <code>videos.db</code> + <code>video_categories.db</code></span>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal Thêm / Chỉnh sửa Video (Edit) -->
+    <div id="video-modal" class="modal-backdrop">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3 id="video-modal-title" class="modal-title">Thêm Video Mới</h3>
+                <button type="button" class="modal-close" data-close-video-modal>&times;</button>
+            </div>
+            <form id="video-form">
+                <div class="modal-body">
+                    <input type="hidden" id="video-id">
+
+                    <div class="form-group">
+                        <label class="form-label" for="video-title">Tiêu đề Video (Title)</label>
+                        <input
+                            type="text"
+                            id="video-title"
+                            class="form-control"
+                            placeholder="Nhập tiêu đề video..."
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="video-category">Danh mục (từ video_categories.db)</label>
+                        <select id="video-category" class="form-control" required></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="video-thumbnail">URL Hình thu nhỏ (Thumbnail)</label>
+                        <input
+                            type="url"
+                            id="video-thumbnail"
+                            class="form-control"
+                            placeholder="https://images.unsplash.com/..."
+                            required
+                        >
+                        <div class="thumb-preview-row">
+                            <img id="thumb-preview-img" src="https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=400&q=80" alt="Preview">
+                            <span class="form-hint">Xem trước hình ảnh Thumbnail (tỷ lệ 16:9)</span>
+                        </div>
+                    </div>
+
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label class="form-label" for="video-views">Số lượt xem (Views)</label>
+                            <input
+                                type="number"
+                                id="video-views"
+                                class="form-control"
+                                min="0"
+                                step="1"
+                                value="0"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="video-size">Dung lượng (MB)</label>
+                            <input
+                                type="number"
+                                id="video-size"
+                                class="form-control"
+                                min="1"
+                                step="0.1"
+                                value="250.0"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="video-duration">Thời lượng Video (MM:SS)</label>
+                        <input
+                            type="text"
+                            id="video-duration"
+                            class="form-control"
+                            placeholder="15:30"
+                            value="15:30"
+                            required
+                        >
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-close-video-modal>Hủy</button>
+                    <button type="submit" class="btn btn-primary">Lưu vào videos.db</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Thêm Danh mục vào video_categories.db -->
+    <div id="category-modal" class="modal-backdrop">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3 class="modal-title">Thêm Danh Mục Mới (video_categories.db)</h3>
+                <button type="button" class="modal-close" data-close-category-modal>&times;</button>
+            </div>
+            <form id="category-form">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="form-label" for="cat-name">Tên danh mục</label>
+                        <input
+                            type="text"
+                            id="cat-name"
+                            class="form-control"
+                            placeholder="Ví dụ: Hướng dẫn SQLite"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="cat-color">Màu nhãn hiển thị</label>
+                        <input
+                            type="color"
+                            id="cat-color"
+                            class="form-control"
+                            value="#2563EB"
+                            style="height: 42px; padding: 4px;"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="cat-desc">Mô tả danh mục</label>
+                        <input
+                            type="text"
+                            id="cat-desc"
+                            class="form-control"
+                            placeholder="Mô tả ngắn gọn..."
+                        >
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-close-category-modal>Hủy</button>
+                    <button type="submit" class="btn btn-primary">Lưu vào video_categories.db</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- SQL.js WebAssembly -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
+    <script src="assets/js/utils/formatters.js"></script>
+    <script src="assets/js/utils/auth-guard.js"></script>
+    <script src="assets/js/db/supabase-client.js"></script>
+    <script src="assets/js/db/sqlite-manager.js"></script>
+    <script src="assets/js/db/categories-repo.js"></script>
+    <script src="assets/js/db/videos-repo.js"></script>
+    <script src="assets/js/pages/videos.js"></script>
+</body>
+</html>

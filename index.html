@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard — Quản lý Video (Light Mode)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-logo">▶</div>
+                <div class="brand-text">
+                    <span class="brand-title">VideoAdmin</span>
+                    <span class="brand-subtitle">Vibe Coding • SQLite</span>
+                </div>
+            </div>
+
+            <div class="sidebar-content">
+                <div>
+                    <div class="nav-section-title">Menu Quản Trị</div>
+                    <ul class="nav-list">
+                        <li>
+                            <a href="index.html" class="nav-link active">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="videos.html" class="nav-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                                <span>List Video</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="permissions.html" class="nav-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                <span>Phân Quyền</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="nav-section-title">Trang Xác Thực</div>
+                    <ul class="nav-list">
+                        <li>
+                            <a href="login.html" class="nav-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+                                <span>Trang Login</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="register.html" class="nav-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+                                <span>Trang Register</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="forgot-password.html" class="nav-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                <span>Forgot Password</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 4 SQLite Databases Panel -->
+                <div class="db-panel">
+                    <div class="db-panel-header">
+                        <span class="db-panel-title">🗄️ SQLite Databases</span>
+                        <span class="db-badge-engine">No-Backend</span>
+                    </div>
+                    <ul class="db-list">
+                        <li class="db-item">
+                            <span class="db-item-name"><span class="status-dot"></span>users.db</span>
+                            <button type="button" class="db-download-btn" data-export-db="users.db" title="Tải file users.db">⬇ Tải</button>
+                        </li>
+                        <li class="db-item">
+                            <span class="db-item-name"><span class="status-dot"></span>videos.db</span>
+                            <button type="button" class="db-download-btn" data-export-db="videos.db" title="Tải file videos.db">⬇ Tải</button>
+                        </li>
+                        <li class="db-item">
+                            <span class="db-item-name"><span class="status-dot"></span>video_categories.db</span>
+                            <button type="button" class="db-download-btn" data-export-db="video_categories.db" title="Tải file video_categories.db">⬇ Tải</button>
+                        </li>
+                        <li class="db-item">
+                            <span class="db-item-name"><span class="status-dot"></span>video_analytics.db</span>
+                            <button type="button" class="db-download-btn" data-export-db="video_analytics.db" title="Tải file video_analytics.db">⬇ Tải</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <button type="button" id="btn-reset-db" class="btn btn-secondary btn-sm btn-block">
+                    🔄 Khôi phục DB mẫu
+                </button>
+                <button type="button" data-action="logout" class="btn btn-danger btn-sm btn-block">
+                    Đăng xuất
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Wrapper -->
+        <div class="main-wrapper">
+            <header class="top-header">
+                <div class="header-left">
+                    <h1 class="page-title">Dashboard Tổng Quan</h1>
+                </div>
+                <div class="header-right">
+                    <a href="videos.html" class="btn btn-primary btn-sm">
+                        + Quản lý & Thêm Video
+                    </a>
+                    <div class="user-pill">
+                        <div class="user-avatar" id="header-user-avatar">AD</div>
+                        <div class="user-info">
+                            <span class="user-name" id="header-user-name">Quản Trị Viên</span>
+                            <span class="user-role" id="header-user-role">admin@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="page-content">
+                <div class="dashboard-welcome">
+                    <div class="welcome-text">
+                        <h2>Thống kê Hệ thống Video</h2>
+                        <p>Dữ liệu được truy vấn trực tiếp từ <code>videos.db</code>, <code>video_categories.db</code> và <code>video_analytics.db</code>.</p>
+                    </div>
+                </div>
+
+                <!-- 3 KPI Cards: Tổng số video, Tổng lượt xem, Dung lượng Storage -->
+                <section class="kpi-grid">
+                    <!-- Card 1: Tổng số video -->
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-label">Tổng số video</span>
+                            <div class="kpi-icon blue">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                            </div>
+                        </div>
+                        <div class="kpi-value" id="kpi-total-videos">0</div>
+                        <div class="kpi-subtext">
+                            <span>Truy vấn từ <code>videos.db</code></span>
+                            <span class="badge-trend">+100% Active</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Tổng lượt xem -->
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-label">Tổng lượt xem</span>
+                            <div class="kpi-icon green">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            </div>
+                        </div>
+                        <div class="kpi-value" id="kpi-total-views">0</div>
+                        <div class="kpi-subtext">
+                            <span>Tổng cộng lượt xem toàn kênh</span>
+                            <span class="badge-trend">↑ +18.4%</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Dung lượng Storage -->
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-label">Dung lượng Storage</span>
+                            <div class="kpi-icon purple">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                            </div>
+                        </div>
+                        <div class="kpi-value" id="kpi-storage-value">0 MB</div>
+                        <div class="storage-progress-wrapper">
+                            <div class="storage-progress-bar">
+                                <div class="storage-progress-fill" id="kpi-storage-bar" style="width: 0%"></div>
+                            </div>
+                            <div class="kpi-subtext">
+                                <span id="kpi-storage-percent">0% của 10 GB</span>
+                                <span>Định mức: 10 GB</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2 Biểu đồ chính: Biểu đồ Cột (Top 10 Video) & Biểu đồ Line (Lượt xem theo Ngày/Tháng) -->
+                <section class="charts-grid">
+                    <!-- Biểu đồ cột: 10 video nhiều lượt xem nhất -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <div class="chart-title-group">
+                                <h3>📊 10 Video nhiều lượt xem nhất</h3>
+                                <p>Biểu đồ cột xếp hạng Top 10 video dẫn đầu (<code>videos.db</code>)</p>
+                            </div>
+                        </div>
+                        <div class="chart-canvas-container">
+                            <canvas id="topVideosBarChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Biểu đồ line: lượt xem theo ngày/tháng -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <div class="chart-title-group">
+                                <h3>📈 Biểu đồ lượt xem theo Ngày / Tháng</h3>
+                                <p>Xu hướng tăng trưởng lượt xem (<code>video_analytics.db</code>)</p>
+                            </div>
+                            <div class="chart-tabs">
+                                <button type="button" class="chart-tab-btn active" data-line-mode="daily">Theo Ngày</button>
+                                <button type="button" class="chart-tab-btn" data-line-mode="monthly">Theo Tháng</button>
+                            </div>
+                        </div>
+                        <div class="chart-canvas-container">
+                            <canvas id="viewsLineChart"></canvas>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Phân loại theo Danh mục (video_categories.db) -->
+                <section class="category-strip-card">
+                    <div class="chart-title-group">
+                        <h3>🏷️ Phân bố Video theo Danh mục (<code>video_categories.db</code>)</h3>
+                        <p>Tổng hợp số lượng video và lượt xem theo từng chuyên mục</p>
+                    </div>
+                    <div id="category-breakdown-list" class="category-pills"></div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Thư viện SQL.js (WebAssembly SQLite) & Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="assets/js/utils/formatters.js"></script>
+    <script src="assets/js/utils/auth-guard.js"></script>
+    <script src="assets/js/db/supabase-client.js"></script>
+    <script src="assets/js/db/sqlite-manager.js"></script>
+    <script src="assets/js/db/users-repo.js"></script>
+    <script src="assets/js/db/categories-repo.js"></script>
+    <script src="assets/js/db/videos-repo.js"></script>
+    <script src="assets/js/db/analytics-repo.js"></script>
+    <script src="assets/js/pages/dashboard.js"></script>
+</body>
+</html>

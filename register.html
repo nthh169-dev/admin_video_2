@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký tài khoản — Video Admin Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/auth.css">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <div class="auth-logo">▶</div>
+                <h1 class="auth-title">Tạo tài khoản mới</h1>
+                <p class="auth-subtitle">Đăng ký quản trị viên mới vào cơ sở dữ liệu</p>
+                <span class="auth-db-tag">🗄️ SQLite: users.db</span>
+            </div>
+
+            <div id="auth-alert" class="auth-alert"></div>
+
+            <form id="register-form">
+                <div class="form-group">
+                    <label class="form-label" for="reg-fullname">Họ và tên</label>
+                    <input
+                        type="text"
+                        id="reg-fullname"
+                        class="form-control"
+                        placeholder="Nguyễn Văn A"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="reg-email">Địa chỉ Email</label>
+                    <input
+                        type="email"
+                        id="reg-email"
+                        class="form-control"
+                        placeholder="name@company.com"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="reg-password">Mật khẩu</label>
+                    <div class="password-input-wrapper">
+                        <input
+                            type="password"
+                            id="reg-password"
+                            class="form-control"
+                            placeholder="Tối thiểu 6 ký tự"
+                            required
+                        >
+                        <button type="button" class="password-toggle-btn" data-toggle-password="reg-password">Hiện</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="reg-confirm-password">Xác nhận mật khẩu</label>
+                    <div class="password-input-wrapper">
+                        <input
+                            type="password"
+                            id="reg-confirm-password"
+                            class="form-control"
+                            placeholder="Nhập lại mật khẩu"
+                            required
+                        >
+                        <button type="button" class="password-toggle-btn" data-toggle-password="reg-confirm-password">Hiện</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="reg-security">Mã bảo mật khôi phục mật khẩu</label>
+                    <input
+                        type="text"
+                        id="reg-security"
+                        class="form-control"
+                        placeholder="Ví dụ: vibe2026"
+                        value="vibe2026"
+                        required
+                    >
+                    <p class="form-hint">Dùng để xác minh khi bạn quên mật khẩu (không cần Backend gửi mail).</p>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">
+                    Đăng ký tài khoản
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                Đã có tài khoản? <a href="login.html"><strong>Quay lại Đăng nhập</strong></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- SQL.js WebAssembly & Supabase JS SDK v2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="assets/js/utils/formatters.js"></script>
+    <script src="assets/js/utils/auth-guard.js"></script>
+    <script src="assets/js/db/supabase-client.js"></script>
+    <script src="assets/js/db/sqlite-manager.js"></script>
+    <script src="assets/js/db/users-repo.js"></script>
+    <script src="assets/js/pages/auth.js"></script>
+</body>
+</html>
